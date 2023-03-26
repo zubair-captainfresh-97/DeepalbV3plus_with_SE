@@ -38,8 +38,8 @@ stages:
       md5: d6cb8a1b8b32984dffa550f6174151b7
       size: 1437
     - path: notebooks/deeplabv3plus_squeeze_excitation.ipynb
-      md5: 9e47688aa9de94d71a6a892d21433ea5
-      size: 25877
+      md5: f278cd5c868e59506ecd6d25f7c2bce2
+      size: 25887
     - path: tfrecords/
       md5: b09344267f797202a1c6a66cfaf28902.dir
       size: 7399210896
@@ -58,22 +58,22 @@ stages:
         - 256
         model_params.Number_of_classes: 2
         model_params.Optimizer: nadam
-        model_params.Scheduler: Exponential
+        model_params.Scheduler: Step_decay
     outs:
     - path: confusion_matrix.png
-      md5: db9e7c6258926bcd41b903cc2a82a811
-      size: 10184
+      md5: ca6459e1e60040acdc72f46dd49b3f5f
+      size: 10345
     - path: evaluation/metrics.json
-      md5: af8b6d04b3dadd765207341f017a20d2
-      size: 417
+      md5: e8bbdf1e06af4b555726cf6cc16e1571
+      size: 416
     - path: evaluation/plots
-      md5: 89c9f36fdd0da971acc38c9310ba8913.dir
-      size: 16502
+      md5: f0ff6f278a36cfe918439039ae63849f.dir
+      size: 12173
       nfiles: 9
     - path: evaluation/report.html
-      md5: 41a85e4ad3726cc1d5ff49df77683253
-      size: 102228
+      md5: b6d5522d7134842c589575b75a1793ad
+      size: 82567
     - path: model_checkpoint/
-      md5: 8dfd62e10b551fc9925fa471a51d3883.dir
+      md5: bac8bda035a52abc4d831d6bd2978f89.dir
       size: 158106752
       nfiles: 1
