@@ -1,0 +1,39 @@
+stages:
+  tfrecords:
+    cmd: papermill notebooks/albumentations_and_patchify-v1-sentinel.ipynb notebook_output/albumentations_and_patchify-v1-sentinel.ipynb
+    deps:
+    - notebooks/albumentations_and_patchify-v1-sentinel.ipynb
+    - Smaller_pond_sentinel_data_v1/Images/
+    - Smaller_pond_sentinel_data_v1/Masks/
+    params:
+    - tfrecords_creation.Image_patch_size
+    - tfrecords_creation.Mask_patch_size
+    outs:
+    - 'tfrecords/'
+  training:
+    cmd: papermill notebooks/deeplabv3plus_squeeze_excitation.ipynb notebook_output/deeplabv3plus_squeeze_excitation.ipynb
+    deps:
+    - notebooks/deeplabv3plus_squeeze_excitation.ipynb
+    - tfrecords/
+    - loss.py
+    - clr_callback.py
+    params:
+    - model_params.Image_patch_size
+    - model_params.Mask_patch_size
+    - model_params.Batch_size
+    - model_params.Number_of_classes
+    - model_params.Learning_rate
+    - model_params.Optimizer
+    - model_params.Epochs
+    - model_params.Scheduler
+    outs:
+    - 'model_checkpoint/'
+    -  evaluation/report.html:
+        cache: false
+    metrics:
+      - evaluation/metrics.json:
+          cache: false
+    plots:
+    - evaluation/plots
+    - confusion_matrix.png:
+        cache: false
